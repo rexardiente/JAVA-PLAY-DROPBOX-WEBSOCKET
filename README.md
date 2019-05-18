@@ -31,72 +31,72 @@ Dropbox credentials that need to get ready.
 
 Upload Files
 
-	```{
+	{
 		"command": "upload",
 		"path": "object path",
 		"folder": "folder name",
-	}```
+	}
 
 
 Reads Files and Folders
 
-	```{
+	{
 		"command": "read",
 		"folder": "folder name",
 		"name": "file name",
-	}```
+	}
 
 
 Delete files and folder
 
-	```{
+	{
 		"command": "delete",
 		"path": "object path",
-	}```
+	}
 
 
 View Files and Folders
 
-	```{ "command": "view-folders" }```
+	{ "command": "view-folders" }
 
 
 create folder
 
-	```{ 
+	{ 
 		"command": "create-folder", 
 		"folder": "folder name"
-	}```
+	}
 	
 	
 	#### **Implement Using Java**
 
 New Instance of DropBoxCoreAPI.
-	```DropBoxCoreAPI api = new DropBoxCoreAPI();```
+	DropBoxCoreAPI api = new DropBoxCoreAPI();
 
 Initialize DropBoxCoreAPI API.
 
-	```api.initialize();```
+	api.initialize();
 
 Generate Folder Name.
 
-	```String folderName = "/test_java_createFolder" + System.currentTimeMillis();```
+	String folderName = "/test_java_createFolder" + System.currentTimeMillis();
 
 View Lists of Folders on the Account.
 
-	```ListFolderResult listFolder = api.listFolder();```
+	ListFolderResult listFolder = api.listFolder();
 
 Create new Folder on the Server.
 
-	```FolderMetadata folder = api.createFolder(folderName);```
+	FolderMetadata folder = api.createFolder(folderName);
 
 Upload or Add new Files or Folders.
 
-	```FileMetadata uploaded = api.uploadFile(fileUploadPath, folderName + fileName);```
+	FileMetadata uploaded = api.uploadFile(fileUploadPath, folderName + fileName);
 
 Read specific file on the server.
 
-	```FileMetadata read = api.readFile(folderName + fileName, fileUploadPath);```
+	FileMetadata read = api.readFile(folderName + fileName, fileUploadPath);
 
 Delete/Remove file on the server using file path.
 
-	```Metadata deleted = api.deleteFile(folderName + fileName);```
+	Metadata deleted = api.deleteFile(folderName + fileName);
