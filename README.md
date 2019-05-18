@@ -4,7 +4,9 @@
 
 Dropbox is a modern workspace designed to reduce busywork-so you can focus on the things that matter. Sign in and put your creative energy to work
 
-	#### **Project Requirements**
+
+#### **Project Requirements**
+
 | Tool  | Version | 	Description  |
 |:-----:|:-------:| -------------- |
 | Java	| 1.8 		| JDK ia a development environment for building applications and components. |
@@ -25,52 +27,57 @@ Dropbox credentials that need to get ready.
 	*- This access token can be used to access your account (user@email.com) via the API. Don’t share your access token with anyone.*
 
 >
-	#### **Websocket Requests**
-
+#### **Websocket Requests**
 
 Upload Files
-		{
-			"command": "upload",
-			"path": "object path",
-			"folder": "folder name",
-		}
+	```{
+		"command": "upload",
+		"path": "object path",
+		"folder": "folder name",
+	}```
 
 Reads Files and Folders
-		{
-			"command": "read",
-			"folder": "folder name",
-			"name": "file name",
-		}
+	```{
+		"command": "read",
+		"folder": "folder name",
+		"name": "file name",
+	}```
 
 Delete files and folder
-		{
-			"command": "delete",
-			"path": "object path",
-		}
+	```{
+		"command": "delete",
+		"path": "object path",
+	}```
 
 View Files and Folders
-		{ "command": "view-folders" }
+	```{ "command": "view-folders" }```
 
-
+create folder
+	```{ 
+		"command": "create-folder", 
+		"folder": "folder name"
+	}```
+	
+	
 	#### **Implement Using Java**
 
 New Instance of DropBoxCoreAPI.
-		DropBoxCoreAPI api = new DropBoxCoreAPI();
+	```DropBoxCoreAPI api = new DropBoxCoreAPI();```
 
 Initialize DropBoxCoreAPI API.
-		api.initialize();
+	```api.initialize();```
 
 Generate Folder Name.
-		String folderName = "/test_java_createFolder" + System.currentTimeMillis();
+	```String folderName = "/test_java_createFolder" + System.currentTimeMillis();```
 
 View Lists of Folders on the Account.
-		ListFolderResult listFolder = api.listFolder();
+	```ListFolderResult listFolder = api.listFolder();```
 
 Create new Folder on the Server.
-		FolderMetadata folder = api.createFolder(folderName);
+	```FolderMetadata folder = api.createFolder(folderName);```
 
 Upload or Add new Files or Folders.
-		FileMetadata uploaded = api.uploadFile(fileUploadPath, folderName + fileName);
+	```FileMetadata uploaded = api.uploadFile(fileUploadPath, folderName + fileName);```
 
 Read specific file on the server.
 		FileMetadata read = api.readFile(folderName + fileName, fileUploadPath);
