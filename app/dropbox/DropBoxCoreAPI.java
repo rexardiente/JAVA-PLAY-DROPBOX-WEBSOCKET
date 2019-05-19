@@ -1,5 +1,6 @@
 package dropbox;
 
+import javax.inject.*;
 import java.io.*;
 import java.net.URL;
 import com.dropbox.core.*;
@@ -9,13 +10,16 @@ import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.*;
 import com.dropbox.core.v2.users.FullAccount;
 import com.dropbox.core.v2.users.SpaceUsage;
+import com.typesafe.config.Config;
+import utils.Configuration;
 
+@Singleton
 public class DropBoxCoreAPI {
-  private static final String ACCESS_TOKEN =
-  	"rNwcbKqj54AAAAAAAAAAVciCcQiVAFcn681bwBwp8VobBlGoIvAJerlYvkTWqr49";
+  private final Configuration conf  = new Configuration();
+  private String ACCESS_TOKEN       = conf.token();
 
   // Create Dropbox client
-  private DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/google-oauth2-impl").build();
+  private DbxRequestConfig config = DbxRequestConfig.newBuilder(conf.appName()).build();
   private DbxClientV2 client      = new DbxClientV2(config, ACCESS_TOKEN);
   private FullAccount account     = null;
 

@@ -17,11 +17,11 @@ public class WebSocketActor extends AbstractActor {
   private <T> T ObjectToJSON(T data) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
 
-    if (data.getClass().equals(String.class)) {
-      // Separate Json from String response.
+    // Separate Json from String response.
+    if (data.getClass().equals(String.class))
       return (T) mapper.readTree(data.toString().split(":", 2)[1]);
-    }
-    else return (T) mapper.readTree(data.toString());
+    else
+      return (T) mapper.readTree(data.toString());
   }
 
   private final ActorRef out;
@@ -56,7 +56,9 @@ public class WebSocketActor extends AbstractActor {
               out.tell(viewFolders(), getSelf());
               break;
 
-            default: break;
+            default:
+              out.tell(ObjectToJSON("{\"error\": \"Invalid Request.\"}}"), getSelf());
+              break;
           }
         } catch(Exception e) {
           out.tell(ObjectToJSON(e.getMessage()), getSelf());
@@ -91,13 +93,13 @@ public class WebSocketActor extends AbstractActor {
 
   private final <T> T createFolder(JsonNode json) throws DbxException, IOException {
     String   folder       = json.findPath("folder").textValue();
-    FileMetadata readFile = api.createFolder(folder);
+    FolderMetadata readFile = api.createFolder(folder);
 
     return (T) ObjectToJSON(readFile);
   }
 
   private final <T> T viewFolders() throws DbxException, IOException {
-    FileMetadata readFile = api.listFolder();
+    ListFolderResult readFile = api.listFolder();
 
     return (T) ObjectToJSON(readFile);
   }

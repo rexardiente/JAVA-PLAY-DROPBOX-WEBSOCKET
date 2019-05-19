@@ -23,10 +23,22 @@ Dropbox credentials that need to get ready.
 * Application Name
 * App key: XXXXXXXXXXXXXXXXXXX
 * App secret: XXXXXXXXXXXXXXXXXXX
-* Access Token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+* Access Token: XXXXXXXXXXXXXXXXXXX
 	*- This access token can be used to access your account (user@email.com) via the API. Don’t share your access token with anyone.*
 
 >
+
+#### **Java Play Configuration API**
+
+application.conf
+
+	dropbox {
+		ACCESS_TOKEN = "" <!-- your_app_key -->
+		APP_NAME = "" <!-- your_application_name -->
+	}
+
+
+
 #### **Websocket Requests**
 
 Upload Files
@@ -34,7 +46,7 @@ Upload Files
 	{
 		"command": "upload",
 		"path": "object path",
-		"folder": "folder name",
+		"folder": "folder name"
 	}
 
 
@@ -43,7 +55,7 @@ Reads Files and Folders
 	{
 		"command": "read",
 		"folder": "folder name",
-		"name": "file name",
+		"name": "file name"
 	}
 
 
@@ -51,7 +63,7 @@ Delete files and folder
 
 	{
 		"command": "delete",
-		"path": "object path",
+		"path": "object path"
 	}
 
 
@@ -62,12 +74,12 @@ View Files and Folders
 
 create folder
 
-	{ 
-		"command": "create-folder", 
+	{
+		"command": "create-folder",
 		"folder": "folder name"
 	}
-	
-	
+
+
 #### **Implement Using Java**
 
 New Instance of DropBoxCoreAPI.
